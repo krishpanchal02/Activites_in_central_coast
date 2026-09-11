@@ -1,24 +1,122 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My next idea · The Understudy</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#f5f2e9;color:#20281f;font:18px/1.55 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:40px 6vw}header{display:flex;justify-content:space-between;border-bottom:1px solid #b8bcae;padding-bottom:22px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}.stage{display:grid;grid-template-columns:1.5fr 1fr;gap:7vw;align-items:center;min-height:65vh}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(60px,8vw,112px);letter-spacing:-.06em;line-height:.96;margin:40px 0 25px}p{max-width:530px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.mark{height:280px;position:relative;display:grid;place-items:center}.mark span{position:absolute;width:160px;height:220px;border:2px solid #42613b;transform:rotate(var(--r));transition:transform .5s}.mark span:nth-child(1){--r:-25deg}.mark span:nth-child(2){--r:0deg;background:#dbe4be}.mark span:nth-child(3){--r:25deg}.mark:hover span{transform:rotate(calc(var(--r) * 1.3))}a{color:inherit;text-underline-offset:5px}.links{display:flex;flex-wrap:wrap;gap:24px;padding:25px 0}.primary{background:#263d24;color:#fff;padding:12px 20px;text-decoration:none}footer{border-top:1px solid #b8bcae;padding-top:24px;font-size:14px}a:focus-visible{outline:3px solid #a54919;outline-offset:5px}@media(max-width:650px){.stage{display:block;min-height:0}.mark{height:170px;margin:30px 0}.mark span{width:100px;height:140px}header{gap:20px}main{padding:25px 7vw}}@media(prefers-reduced-motion:reduce){.mark span{transition:none}.mark:hover span{transform:rotate(var(--r))}}.live{border-top:1px solid #b8bcae;padding:22px 0 4px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}.live code{flex:1 1 300px;min-width:0;background:#fff;border:1px solid #b8bcae;padding:11px 13px;font-size:14px;overflow-wrap:anywhere}.live button{min-height:44px;padding:11px 18px;font:inherit;font-weight:600;color:#fff;background:#263d24;border:0;cursor:pointer}.live button:focus-visible{outline:3px solid #a54919;outline-offset:5px}.live small{flex-basis:100%;font-size:14px;color:#4a5247}</style>
-<main><header><b>CPVC / The Understudy</b><span>Session 02 · Starter</span></header><section class="stage"><div><h1>A small site.<br>A real beginning.</h1><p>This is my working starter. My own one-page site and one useful interaction come next.</p><p class="eyebrow">Published first. Made mine next.</p></div><div class="mark" aria-hidden="true"><span></span><span></span><span></span></div></section><div class="live"><code id="liveurl">Open this page over http:// or https:// to see its address.</code><button id="copy" type="button">Copy link</button><small id="copyhint">This is the address you submit. Not your GitHub repository address.</small></div><div class="links"><a class="primary" href="https://calpolyvibecoding.com/portal">Submit my live URL ↗</a><a id="guide" href="https://github.com/calpolyvibecoding-01/cpvc-02-understudy-template#readme">Follow the build guide →</a><a href="examples/coast/">See the coastal example →</a></div><footer>Deploy this untouched starter, open the actual live URL, then confirm your portal submission. <strong>STOP 1:</strong> only then brief the agent and build your own idea. Keep the same root URL as your site grows.</footer></main>
-<script>
-(function(){
-  var box=document.getElementById('liveurl'),btn=document.getElementById('copy'),
-      hint=document.getElementById('copyhint'),guide=document.getElementById('guide');
-  var web=location.protocol==='http:'||location.protocol==='https:';
-  var url=web?location.origin+location.pathname:'';
-  if(web){box.textContent=url;}else{btn.hidden=true;hint.textContent='You are viewing this file directly. Publish it with GitHub Pages to get a real address.';}
-  var host=location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i),
-      repo=location.pathname.split('/').filter(Boolean)[0];
-  if(host&&repo){guide.href='https://github.com/'+host[1]+'/'+repo+'#readme';}
-  btn.addEventListener('click',function(){
-    function pick(){var r=document.createRange();r.selectNodeContents(box);
-      var s=window.getSelection();s.removeAllRanges();s.addRange(r);
-      hint.textContent='Link selected. Press Ctrl+C or Cmd+C to copy it.';}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(url).then(function(){hint.textContent='Copied. Paste it into the Link field in the portal.';},pick);
-    }else{pick();}
-  });
-})();
-</script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A colorful, sample Central Coast day-trip picker for tourists.">
+  <title>Coastline, picked for today</title>
+  <style>
+    :root { --ink:#17223c; --muted:#58647a; --paper:#fff8ec; --coral:#ff6b5f; --sun:#ffc44d; --sea:#4bc4d4; --blue:#2757d9; --card:#fffdf9; --line:#dae0ee; --shadow:0 18px 50px rgba(27,39,72,.14); }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 92% 3%,#ffdb85 0 9%,transparent 25%),linear-gradient(145deg,#fff8ec 0%,#fff1e2 48%,#eaf8fb 100%); font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { max-width:1200px; margin:auto; padding:24px clamp(20px,5vw,72px) 52px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:8px 0 24px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.02em; }
+    .brand-mark { display:grid; place-items:center; width:34px; height:34px; border-radius:50% 50% 48% 52%; color:white; background:conic-gradient(from 220deg,var(--blue),var(--sea),var(--sun),var(--coral),var(--blue)); font-size:18px; }
+    .note { margin:0; color:var(--muted); font-size:14px; }
+    .intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr); gap:32px; align-items:end; padding:clamp(20px,5vw,62px) 0 28px; }
+    h1 { max-width:760px; margin:0; font:800 clamp(44px,7vw,82px)/.98 Georgia,serif; letter-spacing:-.055em; }
+    .intro p { max-width:470px; margin:0 0 5px; color:var(--muted); font-size:18px; }
+    .kicker { display:inline-flex; align-items:center; gap:7px; margin:0 0 16px; color:var(--blue); font-size:13px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .kicker::before { content:""; width:24px; height:3px; border-radius:4px; background:var(--coral); }
+    .planner { padding:clamp(20px,4vw,34px); border:1px solid rgba(23,34,60,.08); border-radius:28px; background:rgba(255,253,249,.86); box-shadow:var(--shadow); }
+    .planner h2 { margin:0 0 4px; font-size:20px; }
+    .picker { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; }
+    .place-button { min-height:114px; padding:16px; border:2px solid var(--line); border-radius:18px; color:var(--ink); background:white; text-align:left; cursor:pointer; transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+    .place-button:hover { transform:translateY(-2px); border-color:var(--sea); }
+    .place-button[aria-pressed="true"] { border-color:var(--blue); background:#eef2ff; box-shadow:0 7px 18px rgba(39,87,217,.13); }
+    .place-button strong { display:block; font-size:16px; }
+    .place-button span { display:block; margin-top:3px; color:var(--muted); font-size:13px; }
+    button:focus-visible, a:focus-visible { outline:3px solid var(--coral); outline-offset:3px; }
+    .trip { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); overflow:hidden; border-radius:30px; background:var(--card); box-shadow:var(--shadow); }
+    .photo-wrap { min-height:480px; position:relative; background:#c9e5ed; }
+    .photo-wrap img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; transition:opacity .24s ease; }
+    .photo-label { position:absolute; right:18px; bottom:18px; padding:7px 10px; border-radius:999px; color:#fff; background:rgba(23,34,60,.76); font-size:12px; }
+    .details { display:flex; flex-direction:column; padding:clamp(24px,4vw,44px); }
+    .details h2 { margin:8px 0 8px; font:700 clamp(32px,4vw,48px)/1.02 Georgia,serif; letter-spacing:-.04em; }
+    .details > p { margin:0; color:var(--muted); }
+    .metrics { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:28px 0 16px; }
+    .metric { padding:15px 12px; border-radius:16px; background:#f4f6fc; }
+    .metric b { display:block; color:var(--blue); font-size:13px; letter-spacing:.06em; text-transform:uppercase; }
+    .metric strong { display:block; margin-top:4px; font-size:20px; }
+    .stays { margin-top:24px; padding-top:21px; border-top:1px solid var(--line); }
+    .stays h3 { margin:0; font-size:17px; }
+    .stays > p { margin:3px 0 12px; color:var(--muted); font-size:13px; }
+    .hotel-list { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+    .hotel { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px; border:1px solid #e3e8f3; border-radius:14px; background:#fbfcff; }
+    .hotel b { display:block; font-size:14px; }
+    .hotel span { color:var(--muted); font-size:13px; }
+    .hotel-rate { flex:0 0 auto; color:var(--blue)!important; font-weight:750; text-align:right; }
+    .rule { margin-top:auto; padding-top:22px; border-top:1px solid var(--line); color:#34415d; font-size:14px; }
+    .rule b { color:var(--ink); }
+    footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding:26px 2px 0; color:var(--muted); font-size:13px; }
+    footer a { color:var(--blue); font-weight:700; text-underline-offset:4px; }
+    @media (max-width:760px) { .intro,.trip { grid-template-columns:1fr; } .intro { gap:20px; padding-top:34px; } .photo-wrap { min-height:330px; } header .note { text-align:right; } }
+    @media (max-width:420px) { main { padding-inline:16px; } .picker,.metrics { grid-template-columns:1fr; } .place-button { min-height:82px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span> Central Coast, easy</div>
+      <p class="note">A sample day-trip picker for visitors</p>
+    </header>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="kicker">Start near San Luis Obispo</p><h1 id="page-title">Pick the color of your day.</h1></div>
+      <p>Choose a Central Coast mood to see an illustrative scene and simple planning estimates. The photo, price, and distance stay together so comparing is effortless.</p>
+    </section>
+    <section class="planner" aria-labelledby="chooser-title">
+      <h2 id="chooser-title">What sounds good?</h2><p class="note">Select a stop to update the picture and planning card.</p>
+      <div class="picker" role="group" aria-label="Choose a sample day trip">
+        <button class="place-button" type="button" data-place="shore" aria-pressed="true"><strong>Ocean &amp; pier</strong><span>Sea air, sandy walks, golden light</span></button>
+        <button class="place-button" type="button" data-place="vines" aria-pressed="false"><strong>Vines &amp; views</strong><span>Rolling hills, a relaxed tasting stop</span></button>
+      </div>
+    </section>
+    <section class="trip" aria-live="polite" aria-labelledby="place-name">
+      <div class="photo-wrap"><img id="place-image" src="assets/coastal-daytrip-illustration.png" alt="Illustrative coastal beach and pier scene at sunset"><span class="photo-label">Illustrative scene · not a location photo</span></div>
+      <div class="details">
+        <p class="kicker" id="place-type">Sample coastal outing</p><h2 id="place-name">Ocean &amp; pier</h2>
+        <p id="place-copy">A breezy choice for a shoreline stroll, pier views, and a sunset that does not need a schedule.</p>
+        <div class="metrics" aria-label="Planning estimates"><div class="metric"><b>From SLO</b><strong id="place-distance">~18 mi</strong></div><div class="metric"><b>Estimated spend</b><strong id="place-price">$20–35</strong></div></div>
+        <p class="note">Sample planning estimates only; check current routes, hours, and prices before you go.</p>
+        <section class="stays" aria-labelledby="hotel-title">
+          <h3 id="hotel-title">Sample nearby stays</h3>
+          <p id="hotel-note">Illustrative hotel choices near this outing; not live listings.</p>
+          <ul class="hotel-list" id="hotel-list">
+            <li class="hotel"><div><b>Seaside Stay</b><span>~0.6 mi away</span></div><span class="hotel-rate">from $145/night</span></li>
+            <li class="hotel"><div><b>Harbor House</b><span>~1.4 mi away</span></div><span class="hotel-rate">from $178/night</span></li>
+          </ul>
+        </section>
+        <p class="rule"><b>Compare without losing context:</b> the estimated price and distance from San Luis Obispo remain visible beside each selected scene.</p>
+      </div>
+    </section>
+    <footer><span>Photos are AI-generated illustrations; travel details are sample planning estimates.</span><a href="examples/coast/">View the course coastal example</a></footer>
+  </main>
+  <script>
+    (function () {
+      var places = {
+        shore: { type:"Sample coastal outing", name:"Ocean & pier", copy:"A breezy choice for a shoreline stroll, pier views, and a sunset that does not need a schedule.", distance:"~18 mi", price:"$20–35", image:"assets/coastal-daytrip-illustration.png", alt:"Illustrative coastal beach and pier scene at sunset", hotels:[{ name:"Seaside Stay", distance:"~0.6 mi away", rate:"from $145/night" },{ name:"Harbor House", distance:"~1.4 mi away", rate:"from $178/night" }] },
+        vines: { type:"Sample vineyard outing", name:"Vines & views", copy:"A slow afternoon for hilltop scenery, a casual tasting stop, and an unhurried drive back toward town.", distance:"~31 mi", price:"$35–60", image:"assets/vineyard-daytrip-illustration.png", alt:"Illustrative vineyard terrace and rolling coastal hills in afternoon light", hotels:[{ name:"Hilltop Lodge", distance:"~0.8 mi away", rate:"from $169/night" },{ name:"Oak & Olive Inn", distance:"~2.1 mi away", rate:"from $202/night" }] }
+      };
+      var image = document.getElementById("place-image"), type = document.getElementById("place-type"), name = document.getElementById("place-name"), copy = document.getElementById("place-copy"), distance = document.getElementById("place-distance"), price = document.getElementById("place-price"), hotelList = document.getElementById("hotel-list"), buttons = document.querySelectorAll(".place-button");
+      function renderHotels(hotels) {
+        hotelList.replaceChildren();
+        hotels.forEach(function (hotel) {
+          var item = document.createElement("li"), info = document.createElement("div"), hotelName = document.createElement("b"), hotelDistance = document.createElement("span"), hotelRate = document.createElement("span");
+          item.className = "hotel"; hotelName.textContent = hotel.name; hotelDistance.textContent = hotel.distance; hotelRate.className = "hotel-rate"; hotelRate.textContent = hotel.rate;
+          info.append(hotelName, hotelDistance); item.append(info, hotelRate); hotelList.append(item);
+        });
+      }
+      function show(key) {
+        var place = places[key]; image.style.opacity = "0";
+        window.setTimeout(function () { image.src = place.image; image.alt = place.alt; image.style.opacity = "1"; }, 120);
+        type.textContent = place.type; name.textContent = place.name; copy.textContent = place.copy; distance.textContent = place.distance; price.textContent = place.price;
+        renderHotels(place.hotels);
+        buttons.forEach(function (button) { button.setAttribute("aria-pressed", String(button.dataset.place === key)); });
+      }
+      buttons.forEach(function (button) { button.addEventListener("click", function () { show(button.dataset.place); }); });
+    }());
+  </script>
+</body>
 </html>
