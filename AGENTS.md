@@ -19,7 +19,7 @@ After STOP 1, help the student propose and approve the six TARGET lines and one 
 
 ## My standing rule
 
-[One observable, student-approved rule that protects this project's purpose or experience.]
+Keep the selected destination's estimated price and distance from San Luis Obispo visible alongside its photos; do not make visitors close the gallery or navigate away to compare them.
 
 ## Workflow
 
