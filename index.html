@@ -31,7 +31,7 @@
     .trip { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); overflow:hidden; border-radius:30px; background:var(--card); box-shadow:var(--shadow); }
     .photo-wrap { min-height:480px; position:relative; background:#c9e5ed; }
     .photo-wrap img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; transition:opacity .24s ease; }
-    .photo-label { position:absolute; right:18px; bottom:18px; padding:7px 10px; border-radius:999px; color:#fff; background:rgba(23,34,60,.76); font-size:12px; }
+    .photo-label { position:absolute; right:18px; bottom:18px; padding:7px 10px; border-radius:999px; color:#fff; background:rgba(23,34,60,.76); font-size:12px; text-decoration:none; }
     .details { display:flex; flex-direction:column; padding:clamp(24px,4vw,44px); }
     .details h2 { margin:8px 0 8px; font:700 clamp(32px,4vw,48px)/1.02 Georgia,serif; letter-spacing:-.04em; }
     .details > p { margin:0; color:var(--muted); }
@@ -64,19 +64,19 @@
     </header>
     <section class="intro" aria-labelledby="page-title">
       <div><p class="kicker">Start near San Luis Obispo</p><h1 id="page-title">Pick the color of your day.</h1></div>
-      <p>Choose a Central Coast mood to see an illustrative scene and simple planning estimates. The photo, price, and distance stay together so comparing is effortless.</p>
+      <p>Choose a Central Coast stop to see a real local photo and simple planning estimates. The photo, price, and distance stay together so comparing is effortless.</p>
     </section>
     <section class="planner" aria-labelledby="chooser-title">
       <h2 id="chooser-title">What sounds good?</h2><p class="note">Select a stop to update the picture and planning card.</p>
       <div class="picker" role="group" aria-label="Choose a sample day trip">
-        <button class="place-button" type="button" data-place="shore" aria-pressed="true"><strong>Ocean &amp; pier</strong><span>Sea air, sandy walks, golden light</span></button>
-        <button class="place-button" type="button" data-place="vines" aria-pressed="false"><strong>Vines &amp; views</strong><span>Rolling hills, a relaxed tasting stop</span></button>
+        <button class="place-button" type="button" data-place="shore" aria-pressed="true"><strong>Pismo Beach &amp; pier</strong><span>Sea air, sandy walks, Pacific views</span></button>
+        <button class="place-button" type="button" data-place="vines" aria-pressed="false"><strong>Paso Robles vineyard</strong><span>Rolling vines and a relaxed tasting stop</span></button>
       </div>
     </section>
     <section class="trip" aria-live="polite" aria-labelledby="place-name">
-      <div class="photo-wrap"><img id="place-image" src="assets/coastal-daytrip-illustration.png" alt="Illustrative coastal beach and pier scene at sunset"><span class="photo-label">Illustrative scene · not a location photo</span></div>
+      <div class="photo-wrap"><img id="place-image" src="assets/pismo-beach-pier.jpg" alt="Pismo Beach Pier in California"><a class="photo-label" id="photo-credit" href="https://commons.wikimedia.org/wiki/File:Pismo_Beach_(California,_USA),_Pier_--_2012_--_4761.jpg" target="_blank" rel="noopener">Photo: Dietmar Rabich · CC BY-SA 4.0</a></div>
       <div class="details">
-        <p class="kicker" id="place-type">Sample coastal outing</p><h2 id="place-name">Ocean &amp; pier</h2>
+        <p class="kicker" id="place-type">Sample coastal outing</p><h2 id="place-name">Pismo Beach &amp; pier</h2>
         <p id="place-copy">A breezy choice for a shoreline stroll, pier views, and a sunset that does not need a schedule.</p>
         <div class="metrics" aria-label="Planning estimates"><div class="metric"><b>From SLO</b><strong id="place-distance">~18 mi</strong></div><div class="metric"><b>Estimated spend</b><strong id="place-price">$20–35</strong></div></div>
         <p class="note">Sample planning estimates only; check current routes, hours, and prices before you go.</p>
@@ -91,15 +91,15 @@
         <p class="rule"><b>Compare without losing context:</b> the estimated price and distance from San Luis Obispo remain visible beside each selected scene.</p>
       </div>
     </section>
-    <footer><span>Photos are AI-generated illustrations; travel details are sample planning estimates.</span><a href="examples/coast/">View the course coastal example</a></footer>
+    <footer><span>Local photos are credited under CC BY-SA 4.0; travel details are sample planning estimates.</span><a href="examples/coast/">View the course coastal example</a></footer>
   </main>
   <script>
     (function () {
       var places = {
-        shore: { type:"Sample coastal outing", name:"Ocean & pier", copy:"A breezy choice for a shoreline stroll, pier views, and a sunset that does not need a schedule.", distance:"~18 mi", price:"$20–35", image:"assets/coastal-daytrip-illustration.png", alt:"Illustrative coastal beach and pier scene at sunset", hotels:[{ name:"Seaside Stay", distance:"~0.6 mi away", rate:"from $145/night" },{ name:"Harbor House", distance:"~1.4 mi away", rate:"from $178/night" }] },
-        vines: { type:"Sample vineyard outing", name:"Vines & views", copy:"A slow afternoon for hilltop scenery, a casual tasting stop, and an unhurried drive back toward town.", distance:"~31 mi", price:"$35–60", image:"assets/vineyard-daytrip-illustration.png", alt:"Illustrative vineyard terrace and rolling coastal hills in afternoon light", hotels:[{ name:"Hilltop Lodge", distance:"~0.8 mi away", rate:"from $169/night" },{ name:"Oak & Olive Inn", distance:"~2.1 mi away", rate:"from $202/night" }] }
+        shore: { type:"Sample coastal outing", name:"Pismo Beach & pier", copy:"A breezy choice for a shoreline stroll, pier views, and Pacific air.", distance:"~18 mi", price:"$20–35", image:"assets/pismo-beach-pier.jpg", alt:"Pismo Beach Pier in California", credit:"Photo: Dietmar Rabich · CC BY-SA 4.0", creditUrl:"https://commons.wikimedia.org/wiki/File:Pismo_Beach_(California,_USA),_Pier_--_2012_--_4761.jpg", hotels:[{ name:"Seaside Stay", distance:"~0.6 mi away", rate:"from $145/night" },{ name:"Harbor House", distance:"~1.4 mi away", rate:"from $178/night" }] },
+        vines: { type:"Sample vineyard outing", name:"Paso Robles vineyard", copy:"A slow afternoon for vineyard scenery, a casual tasting stop, and an unhurried drive back toward town.", distance:"~31 mi", price:"$35–60", image:"assets/paso-robles-vineyard.jpg", alt:"Vineyard in Paso Robles AVA, California", credit:"Photo: Pasowine · CC BY-SA 4.0", creditUrl:"https://commons.wikimedia.org/wiki/File:Paso_Vineyard.jpg", hotels:[{ name:"Hilltop Lodge", distance:"~0.8 mi away", rate:"from $169/night" },{ name:"Oak & Olive Inn", distance:"~2.1 mi away", rate:"from $202/night" }] }
       };
-      var image = document.getElementById("place-image"), type = document.getElementById("place-type"), name = document.getElementById("place-name"), copy = document.getElementById("place-copy"), distance = document.getElementById("place-distance"), price = document.getElementById("place-price"), hotelList = document.getElementById("hotel-list"), buttons = document.querySelectorAll(".place-button");
+      var image = document.getElementById("place-image"), type = document.getElementById("place-type"), name = document.getElementById("place-name"), copy = document.getElementById("place-copy"), distance = document.getElementById("place-distance"), price = document.getElementById("place-price"), credit = document.getElementById("photo-credit"), hotelList = document.getElementById("hotel-list"), buttons = document.querySelectorAll(".place-button");
       function renderHotels(hotels) {
         hotelList.replaceChildren();
         hotels.forEach(function (hotel) {
@@ -111,7 +111,7 @@
       function show(key) {
         var place = places[key]; image.style.opacity = "0";
         window.setTimeout(function () { image.src = place.image; image.alt = place.alt; image.style.opacity = "1"; }, 120);
-        type.textContent = place.type; name.textContent = place.name; copy.textContent = place.copy; distance.textContent = place.distance; price.textContent = place.price;
+        type.textContent = place.type; name.textContent = place.name; copy.textContent = place.copy; distance.textContent = place.distance; price.textContent = place.price; credit.textContent = place.credit; credit.href = place.creditUrl;
         renderHotels(place.hotels);
         buttons.forEach(function (button) { button.setAttribute("aria-pressed", String(button.dataset.place === key)); });
       }
